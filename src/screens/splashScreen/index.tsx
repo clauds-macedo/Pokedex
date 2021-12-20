@@ -14,11 +14,6 @@ export default function SplashScreen() {
                 autoPlay 
                 loop
             />
-            <View style={styles.titleView}>
-                <Text style={styles.title}>
-                    Oi
-                </Text>
-            </View>
         </View>
     )
 }
