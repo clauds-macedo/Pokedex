@@ -1,6 +1,7 @@
 import React from 'react';
-import { useFonts } from 'expo-font';
+import { StatusBar } from 'react-native'
 import {Poppins_400Regular, Poppins_700Bold} from '@expo-google-fonts/poppins'
+import { useFonts } from 'expo-font';
 import { Routes } from './src/routes';
 
 
@@ -14,7 +15,14 @@ export default function App() {
   // segurar a splash screen
 
   return (
-    <Routes />
+    <>
+      <StatusBar 
+        barStyle='light-content'
+        backgroundColor='transparent'
+        translucent
+      />
+      <Routes />
+    </>
   );
 }
 
