@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFonts } from 'expo-font';
 import {Poppins_400Regular, Poppins_700Bold} from '@expo-google-fonts/poppins'
-import SplashScreen from './src/screens/splashScreen';
+import { Routes } from './src/routes';
 
 
 export default function App() {
@@ -12,9 +12,9 @@ export default function App() {
   });
   
   // segurar a splash screen
-  
+
   return (
-      <SplashScreen />
+    <Routes />
   );
 }
 
