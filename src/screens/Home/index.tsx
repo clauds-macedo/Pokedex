@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from 'react-native'
+import { View, Text, TextInput } from 'react-native'
 import { styles } from "./styles";
 
 import Pokebola from '../../assets/Pokeball.svg'
@@ -17,6 +17,10 @@ export default function Home() {
                 </View>
                 <Ionicons name="filter" size={32} color="black" />
             </View>
+            <TextInput
+            style={styles.search}
+            placeholder="Procurar"
+            />
         </View>
 
         // header
