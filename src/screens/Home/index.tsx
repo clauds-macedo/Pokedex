@@ -3,12 +3,20 @@ import { View, Text } from 'react-native'
 import { styles } from "./styles";
 
 import Pokebola from '../../assets/Pokeball.svg'
+import Pokeball from "../../assets/Pokebola";
 import { theme } from "../../global/theme";
+import { Ionicons } from '@expo/vector-icons'
 
 export default function Home() {
     return (
         <View style={styles.container}>
-            <Pokebola height={23} width={23} fill={theme.colors.darkGray}/> 
+            <View style={styles.headerContainer}>
+                <View style={styles.header}>
+                    <Pokeball/>
+                    <Text style={styles.textLogo}>Pokédex</Text>
+                </View>
+                <Ionicons name="filter" size={32} color="black" />
+            </View>
         </View>
 
         // header

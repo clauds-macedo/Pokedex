@@ -1,9 +1,8 @@
 import React from 'react';
-import { StatusBar } from 'react-native'
-import {Poppins_400Regular, Poppins_700Bold} from '@expo-google-fonts/poppins'
+import { Poppins_400Regular, Poppins_700Bold } from '@expo-google-fonts/poppins'
 import { useFonts } from 'expo-font';
 import { Routes } from './src/routes';
-
+import { StatusBar } from 'react-native';
 
 export default function App() {
   

@@ -8,12 +8,12 @@ import squirtle from '../../assets/lotties/splash-screen.json'
 export default function SplashScreen() {
     return (
         <View style={styles.container}>
-            <LottieView 
+            {/* <LottieView 
                 style={styles.animation}
                 source={squirtle} 
                 autoPlay 
                 loop
-            />
+            /> */}
         </View>
     )
 }
