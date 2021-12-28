@@ -6,25 +6,26 @@ import splashScreen from  '../screens/splashScreen'
 import Home from "../screens/Home";
 
 
-const { Navigator, Screen } = createStackNavigator();
+const Stack = createStackNavigator();
 
 export function Routes() {
     return (
         <NavigationContainer>
-            <Navigator
+            <Stack.Navigator
                 screenOptions={{
-                    headerShown: false
+                    headerShown: false,
                 }}
+                initialRouteName="Splash"
             >
-                <Screen 
-                    name="Home"
-                    component={Home}
-                /> 
-                <Screen 
+                <Stack.Screen 
                     name="Splash"
                     component={splashScreen}
                 />
-            </Navigator>
+                <Stack.Screen 
+                    name="Home"
+                    component={Home}
+                /> 
+            </Stack.Navigator>
         </NavigationContainer>
     )
 }
