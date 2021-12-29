@@ -30,5 +30,32 @@ export const styles = StyleSheet.create({
         marginVertical: 16,
         paddingHorizontal: 8,
         paddingVertical: 4,
+    },
+    pokemonContainer: {
+        width: 328,
+        height: 360,
+        paddingTop: 8,
+        backgroundColor: '#eaeaea'
+    },
+    pokemonCard: {
+        height: 112,
+        width: 328,
+        paddingTop: 8
+    },
+    pokemon: {
+        width: 104,
+        height: 112,
+        borderRadius: 8,
+        borderWidth: 0.6,
+        paddingLeft: 8
+    },
+    rectangle: {
+        position: "absolute",
+        width: 104,
+        height: 24,
+        bottom: 0,
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
+        backgroundColor: '#000'
     }
 })

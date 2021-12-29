@@ -11,7 +11,7 @@ export default function SplashScreen() {
     const navigation = useNavigation();
 
     setTimeout(() => {
-        navigation.navigate('Home') 
+        navigation.navigate('Home' as never) 
     }, 5000);
 
     return (
