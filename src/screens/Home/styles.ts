@@ -32,22 +32,25 @@ export const styles = StyleSheet.create({
         paddingVertical: 4,
     },
     pokemonContainer: {
-        width: 328,
-        height: 360,
+        width: 120,
+        height: 150,
         paddingTop: 8,
-        backgroundColor: '#eaeaea'
+        paddingLeft: 8,
+        justifyContent: 'center'
     },
     pokemonCard: {
         height: 112,
         width: 328,
-        paddingTop: 8
+        paddingTop: 8,
     },
     pokemon: {
         width: 104,
         height: 112,
         borderRadius: 8,
         borderWidth: 0.6,
-        paddingLeft: 8
+        paddingLeft: 8,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     rectangle: {
         position: "absolute",
@@ -56,6 +59,7 @@ export const styles = StyleSheet.create({
         bottom: 0,
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
-        backgroundColor: '#000'
+        backgroundColor: '#000',
+        alignItems: 'center'
     }
 })

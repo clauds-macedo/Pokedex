@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, FlatList, TouchableOpacity, Image } from 'react-native'
 import { styles } from "./styles";
 
 import Pokebola from '../../assets/Pokeball.svg'
@@ -12,13 +12,37 @@ import IPokeData from "../../services/IPokeData";
 export default function Home() {
 
     const [pokeData, setPokeData] = useState([])
-    const pokeArray = [pokeData]
 
     async function getPokeDataFirstGen() {
-        for (var pokemon = 1; pokemon < 152; pokemon++){
-            const response = await api.get(`pokemon/${pokemon}`)
-            setPokeData(response.data)
-        }
+        
+        const response = await api.get(`pokemon`)
+        setPokeData(response.data.results as never)
+        //console.log(pokeData)
+    }
+
+    const renderItem = (pokemon:any) => {
+        const url = pokemon.item.url
+        const ID = url.replace('https://pokeapi.co/api/v2/pokemon/', '').replace('/', '')
+
+        return(
+            <View style={styles.pokemonContainer}>
+                    <View style={styles.pokemonCard}>
+                        <TouchableOpacity>
+                            <View style={styles.pokemon}>
+                                <View>
+                                    <Image
+                                        source={{uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ID}.png`}}
+                                        style={{width: 100, height: 100}}
+                                    />
+                                </View>
+                                <View style={styles.rectangle}>
+                                    <Text style={{color: '#fff', textTransform: 'capitalize'}}>{pokemon.item.name}</Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                </View>
+            </View>
+        )
     }
 
     useEffect(() => {
@@ -38,26 +62,15 @@ export default function Home() {
             style={styles.search}
             placeholder="Procurar"
             />
-            <View style={styles.pokemonContainer}>
-                    <View style={styles.pokemonCard}>
-                        <View style={styles.pokemon}>
-                            <View style={styles.rectangle}>
-                            
-                            </View>
-                        </View>
-                </View>
-            </View>
-            {/* {
+            
+            <FlatList
+                data={pokeData}
+                renderItem={renderItem}
+                numColumns={3}
+                keyExtractor={(pokemon) => pokemon.name}
+                contentContainerStyle={{flexDirection: 'column', justifyContent: 'center'}}
+            />
 
-                pokeArray 
-                ? 
-                pokeArray.map((poke:IPokeData, key: number) => {
-                    return(
-                        null
-                    )
-                })
-                : <Text>Loading</Text>
-            } */}
         </View>
     )
 }
