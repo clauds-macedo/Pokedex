@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     headerContainer: {
         display: 'flex',
         flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'space-between',
         width: '85%',
     },
