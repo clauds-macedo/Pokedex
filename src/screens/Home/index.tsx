@@ -15,7 +15,7 @@ import { theme } from "../../global/theme";
 import { Ionicons } from "@expo/vector-icons";
 import api from "../../services/api";
 import IPokeData from "../../services/IPokeData";
-import SplashScreen from "../splashScreen";
+import SplashScreen from "../Splash";
 import PokeBox from "../../components/PokeBox";
 
 export default function Home() {
