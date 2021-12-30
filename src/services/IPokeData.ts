@@ -56,6 +56,40 @@ export default interface IPokeData{
                     }
                 ]
         }
+    ],
+    
+    name: 'string',
+    order: number,
+    past_types: [],
+    species: {
+        name: string,
+        url: string
+    }
+
+    sprites: {
+        front_default: string,
+        front_shiny: string
+    },
+
+    stats: [
+        {
+            base_stat: number,
+            effort: number,
+            stat: {
+                name: string,
+                url: string
+            }
+        }
+    ],
+
+    types: [
+        {
+            slot: number,
+            type: {
+                name: string,
+                url: string
+            }
+        }
     ]
 
 }
