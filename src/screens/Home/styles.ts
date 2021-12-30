@@ -45,13 +45,13 @@ export const styles = StyleSheet.create({
         height: 112,
         width: 104,
         marginTop: 8,
-        marginRight: 8
+        marginRight: 8,
     },
     pokemon: {
         width: 104,
         height: 112,
         borderRadius: 8,
-        borderWidth: 0.6,
+        borderWidth: 0.8,
         paddingLeft: 8,
         alignItems: 'center',
         justifyContent: 'center'
@@ -63,9 +63,8 @@ export const styles = StyleSheet.create({
         bottom: 0,
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
-        backgroundColor: '#000',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     pokeName: {
         textTransform: "capitalize",

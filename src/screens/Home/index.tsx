@@ -11,14 +11,16 @@ import IPokeData from "../../services/IPokeData";
 
 export default function Home() {
   const [pokeData, setPokeData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   async function getPokeDataFirstGen() {
-    const pokeArray: any = [];
-    for (var pokemon = 1; pokemon < 151; pokemon++) {
+    
+    for (var pokemon = 1; pokemon < 50; pokemon++) {
       const response = await api.get(`pokemon/${pokemon}`);
-      pokeArray.push(response.data);
+      pokeData.push(response.data as never);
     }
-    setPokeData(pokeArray);
+    setIsLoading(!isLoading)
+    
   }
 
   useEffect(() => {
@@ -37,16 +39,19 @@ export default function Home() {
       <TextInput style={styles.search} placeholder="Procurar" />
       <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.pokemonContainer}>
-            {pokeData ? (
+            {!isLoading ? (
               pokeData.map((poke: IPokeData, key: number) => {
-                  //console.log(poke.sprites['front_default'])
+                const pokeColor = theme.types[(poke.types[0]['type'].name)]
                 return (
-                  <View style={styles.pokemonCard} key={key}>
-                    <TouchableOpacity activeOpacity={0.7}>
-                        <View style={styles.pokemon}>
-                            <Image source={{uri: poke.sprites['front_default']}}
+                  <View style={[styles.pokemonCard]} key={key}
+                  >
+                    <TouchableOpacity activeOpacity={0.7}
+                    onPress={() => {console.log(poke.id)}}
+                    >
+                        <View style={[styles.pokemon, , {borderColor: `${pokeColor}`}]}>
+                            <Image source={{uri: `https://cdn.traction.one/pokedex/pokemon/${poke.id}.png`}}
                             style={{width: 100, height: 100}}/>
-                          <View style={styles.rectangle}>
+                          <View style={[styles.rectangle, {backgroundColor: `${pokeColor}`}]}>
                               <Text style={styles.pokeName}>{poke.name}</Text>
                           </View>
                         </View>
@@ -55,7 +60,7 @@ export default function Home() {
                 );
               })
             ) : (
-              <Text>Loading</Text>
+              <Text style={{fontSize: 40}}>Loading</Text>
             )}
           </View>
       </ScrollView>
