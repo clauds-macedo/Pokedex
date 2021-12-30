@@ -32,16 +32,20 @@ export const styles = StyleSheet.create({
         paddingVertical: 4,
     },
     pokemonContainer: {
-        width: 120,
-        height: 150,
+        width: 350,
         paddingTop: 8,
         paddingLeft: 8,
-        justifyContent: 'center'
+        display: 'flex',
+        flexDirection: 'row',
+        overflow: 'hidden',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
     },
     pokemonCard: {
         height: 112,
-        width: 328,
-        paddingTop: 8,
+        width: 104,
+        marginTop: 8,
+        marginRight: 8
     },
     pokemon: {
         width: 104,
@@ -60,6 +64,13 @@ export const styles = StyleSheet.create({
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
         backgroundColor: '#000',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    pokeName: {
+        textTransform: "capitalize",
+        fontFamily: 'Poppins_400Regular',
+        fontSize: 10,
+        color: '#fff'
     }
 })
