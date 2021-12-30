@@ -1,4 +1,4 @@
-export const theme:any = {
+export const theme: any = {
     colors: {
         background: "#F7F7F7",
         gray250: "#E0E0E0",

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { theme } from "../../global/theme";
 
 export const styles = StyleSheet.create({
     container: {
@@ -15,13 +16,14 @@ export const styles = StyleSheet.create({
     header: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     textLogo: {
-        fontFamily: 'Poppins_400Regular',
+        fontFamily: theme.fonts.title700,
         fontSize: 24,
-        marginLeft: 10
+        marginLeft: 10,
+        marginTop: 5
     },
     search: {
         width: '90%',
@@ -41,35 +43,4 @@ export const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'center',
     },
-    pokemonCard: {
-        height: 112,
-        width: 104,
-        marginTop: 8,
-        marginRight: 8,
-    },
-    pokemon: {
-        width: 104,
-        height: 112,
-        borderRadius: 8,
-        borderWidth: 0.8,
-        paddingLeft: 8,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    rectangle: {
-        position: "absolute",
-        width: 104,
-        height: 24,
-        bottom: 0,
-        borderBottomLeftRadius: 8,
-        borderBottomRightRadius: 8,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    pokeName: {
-        textTransform: "capitalize",
-        fontFamily: 'Poppins_400Regular',
-        fontSize: 10,
-        color: '#fff'
-    }
 })
