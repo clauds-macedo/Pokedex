@@ -3,20 +3,18 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
-  Image,
   ScrollView,
 } from "react-native";
 import { styles } from "./styles";
 
 
+import IPokeData from "../../services/IPokeData";
+import PokeBox from "../../components/PokeBox";
+import { Ionicons } from "@expo/vector-icons";
 import Pokeball from "../../assets/Pokebola";
 import { theme } from "../../global/theme";
-import { Ionicons } from "@expo/vector-icons";
-import api from "../../services/api";
-import IPokeData from "../../services/IPokeData";
 import SplashScreen from "../Splash";
-import PokeBox from "../../components/PokeBox";
+import api from "../../services/api";
 
 export default function Home() {
   const [pokeData, setPokeData] = useState([]);
