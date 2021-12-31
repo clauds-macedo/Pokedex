@@ -17,11 +17,11 @@ export default function PokeBox( { img, bgColor, name, id } : Props) {
                 activeOpacity={0.7}
             >
                 <View style={[styles.card, {borderColor: bgColor}]}>
-                    <View style={styles.id}>
-                        <Text style={[styles.idText, {color: bgColor}]}>
-                            #{id}
-                        </Text>
-                    </View>
+                    
+                    <Text style={[styles.idText, {color: bgColor}]}>
+                        #{id}
+                    </Text>
+                    
                     <Image 
                         source={{uri: img}}
                         style={styles.img}

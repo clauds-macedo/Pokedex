@@ -38,15 +38,12 @@ export const styles = StyleSheet.create({
         fontSize: 10,
         color: '#fff'
     },
-    id: {
-        display: 'flex',
-
-    },
     idText: {
         fontFamily: theme.fonts.regular400,
         fontSize: 12,
-        marginLeft: 60 //consertar isso
-    
+        position: 'absolute',
+        top: 0,
+        right: 7,
     }
 
 
