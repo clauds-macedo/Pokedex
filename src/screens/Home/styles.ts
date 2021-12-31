@@ -33,6 +33,7 @@ export const styles = StyleSheet.create({
         marginVertical: 16,
         paddingHorizontal: 8,
         paddingVertical: 4,
+        fontFamily: theme.fonts.regular400,
     },
     changePage: {
         display: "flex",
@@ -42,7 +43,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     pokemonContainer: {
-        width: 350,
+        width: '100%',
         paddingTop: 8,
         paddingLeft: 8,
         display: 'flex',

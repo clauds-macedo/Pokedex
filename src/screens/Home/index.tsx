@@ -2,29 +2,28 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   ScrollView,
   TouchableOpacity,
 } from "react-native";
 import { styles } from "./styles";
 import Modal from 'react-native-modal'
-import { LinearGradient } from 'expo-linear-gradient'
+import Header from "../../components/Header";
 
 
 import IPokeData from "../../services/IPokeData";
 import PokeBox from "../../components/PokeBox";
 import { Ionicons } from "@expo/vector-icons";
-import Pokeball from "../../assets/Pokebola";
 import { theme } from "../../global/theme";
 import SplashScreen from "../Splash";
 import api from "../../services/api";
+import Loading from "../Loading";
 
 export default function Home() {
   const [pokeData, setPokeData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [starterNum, setStarterNum] = useState(1);
-  const [endNum, setEndNum] = useState(20);
+  const [endNum, setEndNum] = useState(21);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const gens = [1,2,3,4,5,6,7,8]
 
@@ -53,25 +52,18 @@ export default function Home() {
   }, [isLoaded, starterNum, endNum]);
 
   return (
-    <View style={styles.container}>
+    <>
       {isLoaded ?
-        <>
-          <View style={styles.headerContainer}>
-            <View style={styles.header}>
-              <Pokeball />
-              <Text style={styles.textLogo}>Pokédex</Text>
-            </View>
-            <Ionicons name="filter" size={32} color="black" 
-            onPress={() => setIsModalVisible(!isModalVisible)}/>
-          </View>
-
-          <TextInput style={styles.search} placeholder="Procurar" />
+        <View style={styles.container}>
+          <Header 
+            function={() => setIsModalVisible(!isModalVisible)}
+          />
           <View style={styles.changePage}>
             <Ionicons name="arrow-back-outline" size={32} color="black"
             onPress={() => {
-              if(starterNum > 20) {
-                setStarterNum(starterNum - 20)
-                setEndNum(endNum-20)
+              if(starterNum > 21) {
+                setStarterNum(starterNum - 21)
+                setEndNum(endNum-21)
                 setIsLoaded(false)
                 splicePokemons()
               }
@@ -79,8 +71,8 @@ export default function Home() {
             />
             <Ionicons name="arrow-forward-outline" size={32} color="black"
             onPress={() => {
-              setStarterNum(starterNum+20)
-              setEndNum(endNum+20)
+              setStarterNum(starterNum+21)
+              setEndNum(endNum+21)
               setIsLoaded(false)
               splicePokemons()
             }}
@@ -102,9 +94,10 @@ export default function Home() {
                 );
               })}
             </View>
-            <Modal isVisible={isModalVisible}
-            style={{display: 'flex', alignItems: 'center'}}
-            onBackdropPress={() => setIsModalVisible(!isModalVisible)}
+            <Modal 
+              isVisible={isModalVisible}
+              style={{display: 'flex', alignItems: 'center'}}
+              onBackdropPress={() => setIsModalVisible(!isModalVisible)}
             >
               <View style={styles.modalView}>
                   <Text style={styles.modalText}>Filter</Text>
@@ -117,15 +110,16 @@ export default function Home() {
                     })}
                   </View>
               </View>  
+            
             </Modal>
-          </ScrollView>
-          <View>
 
-          </View>
-        </>
+          </ScrollView>
+        </View>
       : !isLoaded && isFirstLoad ?
-      <SplashScreen/> : null
+      <SplashScreen/> 
+      :
+      <Loading />
       }
-    </View>
+    </>
   );
 }
