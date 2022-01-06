@@ -166,8 +166,3 @@ export default function Home() {
     </>
   );
 }
-
-
-
-
-//teste'
