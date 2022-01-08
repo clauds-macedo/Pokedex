@@ -30,18 +30,6 @@ export default function Header(props:Props) {
                     />
                 </TouchableOpacity>
             </View>
-            <View style={styles.searchBox}> 
-                <TextInput 
-                    style={styles.search}
-                    placeholder="Procurar" 
-                >
-                <Ionicons 
-                    name='close-outline'
-                    size={23}
-                />
-                </TextInput>
-            </View>
-
         </>
     );
 }

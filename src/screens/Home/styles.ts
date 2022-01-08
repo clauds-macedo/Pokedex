@@ -74,5 +74,9 @@ export const styles = StyleSheet.create({
         borderWidth: 0.3,
         paddingHorizontal: 12,
         borderRadius: 20
-    }
+    },
+    searchBox: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
 })

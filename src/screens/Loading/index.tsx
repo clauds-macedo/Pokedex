@@ -10,12 +10,14 @@ export default function Loading() {
     return (
         <View style={styles.container}> 
             <Header />
-            <LottieView 
-                style={styles.animation}
-                source={Load}
-                autoPlay
-                loop
-            />
+            <View style={styles.animationContainer}>
+                <LottieView 
+                    style={styles.animation}
+                    source={Load}
+                    autoPlay
+                    loop
+                />
+            </View>
         </View>
     );
 }
