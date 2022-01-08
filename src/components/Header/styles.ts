@@ -29,6 +29,10 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 8,
         paddingVertical: 4,
         fontFamily: theme.fonts.regular400,
-    }
+    },
+    searchBox: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
 
 })

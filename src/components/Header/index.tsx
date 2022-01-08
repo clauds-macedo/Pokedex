@@ -1,9 +1,12 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { MotiView } from 'moti';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { View, Text, TextInput } from "react-native";
 import { styles } from "./styles";
 
 import Pokeball from "../../assets/Pokebola";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 type Props = {
     function?: any;
@@ -14,18 +17,31 @@ export default function Header(props:Props) {
         <>
             <View style={styles.container}>
                 <View style={styles.header}>
-                <Pokeball />
+                    <Pokeball />
                 <Text style={styles.textLogo}>Pokédex</Text>
                 </View>
                 
-                <Ionicons 
-                    name="filter" 
-                    size={32} 
-                    color="black" 
-                    onPress={props.function}
-                />
+                <TouchableOpacity>
+                    <MaterialCommunityIcons 
+                        name="order-alphabetical-ascending" 
+                        size={32} 
+                        color="#2c2c2c" 
+                        onPress={props.function}
+                    />
+                </TouchableOpacity>
             </View>
-            <TextInput style={styles.search} placeholder="Procurar" />
+            <View style={styles.searchBox}> 
+                <TextInput 
+                    style={styles.search}
+                    placeholder="Procurar" 
+                >
+                <Ionicons 
+                    name='close-outline'
+                    size={23}
+                />
+                </TextInput>
+            </View>
+
         </>
     );
 }
