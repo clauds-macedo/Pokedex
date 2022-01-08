@@ -10,6 +10,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 type Props = {
     function?: any;
+    ordered: boolean;
 } 
 
 export default function Header(props:Props) {
@@ -23,7 +24,7 @@ export default function Header(props:Props) {
                 
                 <TouchableOpacity>
                     <MaterialCommunityIcons 
-                        name="order-alphabetical-ascending" 
+                        name={props.ordered ? 'order-numeric-ascending' : 'order-alphabetical-ascending'} 
                         size={32} 
                         color="#2c2c2c" 
                         onPress={props.function}

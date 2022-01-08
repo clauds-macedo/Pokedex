@@ -26,6 +26,7 @@ export default function Home() {
   const [starterNum, setStarterNum] = useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
   const [pokeData, setPokeData] = useState([]);
+  const [ordered, setOrdered] = useState(false)
   const [endNum, setEndNum] = useState(75);
   const [gen, setGen] = useState(1);
   const gens = [1, 2, 3, 4, 5, 6, 7];
@@ -95,11 +96,27 @@ export default function Home() {
     }
   }, [isLoaded, starterNum, endNum, setGen]);
 
+  const handleOrderButton = () => {
+    let newData = [...pokeData];
+
+    if(!ordered) {
+      newData.sort((a, b) => a.name < b.name ? -1 : 1);
+      setPokeData(newData);
+      setOrdered(true);
+    }
+    setPokeData(pokeData);
+    setOrdered(false);
+
+  }
+
   return (
     <>
       {isLoaded ? (
         <View style={styles.container}>
-          <Header function={() => setIsModalVisible(!isModalVisible)} />
+          <Header 
+            function={() => {handleOrderButton()}} 
+            ordered={ordered}
+          />
           <View style={styles.searchBox}>
             <TextInput
               style={styles.search}
@@ -152,7 +169,7 @@ export default function Home() {
               })}
             </View>
 
-            <Modal
+            {/* <Modal
               isVisible={isModalVisible}
               style={{ display: "flex", alignItems: "center" }}
               onBackdropPress={() => setIsModalVisible(!isModalVisible)}
@@ -182,7 +199,7 @@ export default function Home() {
                   <Text>Apply</Text>
                 </TouchableOpacity>
               </View>
-            </Modal>
+            </Modal> */}
           </ScrollView>
         </View>
       ) : !isLoaded ? (
