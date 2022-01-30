@@ -20,6 +20,7 @@ import api from "../../services/api";
 import Loading from "../Loading";
 
 export default function Home() {
+  const [initialPokeData, setInitialPokeData] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [search, setSearch] = useState<string>("");
@@ -96,17 +97,24 @@ export default function Home() {
     }
   }, [isLoaded, starterNum, endNum, setGen]);
 
-  const handleOrderButton = () => {
-    let newData = [...pokeData];
+  const sortPokemons = () => {
+    setInitialPokeData(pokeData);
+    let newData = [...initialPokeData];
 
+    newData.sort((a, b) => a.name < b.name ? -1 : 1);
+
+    return newData;
+  }
+
+  const handleSortByNameButton = () => {
     if(!ordered) {
-      newData.sort((a, b) => a.name < b.name ? -1 : 1);
-      setPokeData(newData);
       setOrdered(true);
+      setPokeData(sortPokemons);
+    } else {
+      setPokeData(initialPokeData);
+      setOrdered(false);
     }
-    setPokeData(pokeData);
-    setOrdered(false);
-
+    
   }
 
   return (
@@ -114,7 +122,7 @@ export default function Home() {
       {isLoaded ? (
         <View style={styles.container}>
           <Header 
-            function={() => {handleOrderButton()}} 
+            function={() => {handleSortByNameButton()}} 
             ordered={ordered}
           />
           <View style={styles.searchBox}>
