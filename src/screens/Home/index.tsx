@@ -8,7 +8,6 @@ import {
   Image,
 } from "react-native";
 import { styles } from "./styles";
-import Modal from "react-native-modal";
 import Header from "../../components/Header";
 
 import IPokeData from "../../services/IPokeData";
@@ -18,17 +17,23 @@ import { theme } from "../../global/theme";
 import SplashScreen from "../Splash";
 import api from "../../services/api";
 import Loading from "../Loading";
+import FAB from "../../components/FAB";
 
 export default function Home() {
   const [initialPokeData, setInitialPokeData] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+  
   const [search, setSearch] = useState<string>("");
-  const [starterNum, setStarterNum] = useState(1);
+  
+  
   const [isLoaded, setIsLoaded] = useState(false);
   const [pokeData, setPokeData] = useState([]);
+  
   const [ordered, setOrdered] = useState(false)
-  const [endNum, setEndNum] = useState(75);
+  
+  const [starterNum, setStarterNum] = useState(1);
+  const [endNum, setEndNum] = useState(21);
   const [gen, setGen] = useState(1);
   const gens = [1, 2, 3, 4, 5, 6, 7];
 
@@ -101,7 +106,7 @@ export default function Home() {
     setInitialPokeData(pokeData);
     let newData = [...initialPokeData];
 
-    newData.sort((a, b) => a.name < b.name ? -1 : 1);
+    newData.sort((a: { name: string; }, b: { name: string; }) => a.name < b.name ? -1 : 1);
 
     return newData;
   }
@@ -209,6 +214,9 @@ export default function Home() {
               </View>
             </Modal> */}
           </ScrollView>
+          <FAB 
+          style={{bottom: 15, right: 20}}
+          />
         </View>
       ) : !isLoaded ? (
         <Loading />
