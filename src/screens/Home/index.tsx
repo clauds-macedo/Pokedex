@@ -69,6 +69,7 @@ export default function Home() {
       setStarterNum(starterNum - 20);
       setEndNum(endNum - 20);
       setIsLoaded(false);
+      setOrdered(false);
     }
   };
 
@@ -83,6 +84,7 @@ export default function Home() {
         ? setEndNum(starterNum + 40)
         : setEndNum(generationIDS[gen - 1].end);
       setIsLoaded(false);
+      setOrdered(false);
     }
   };
 
@@ -103,7 +105,7 @@ export default function Home() {
   }, [isLoaded, starterNum, endNum, setGen]);
 
   const sortPokemons = () => {
-    setInitialPokeData(pokeData);
+    setInitialPokeData(pokeData); // nessessário pra quando desordenar
     let newData = [...pokeData];
     newData.sort((a: { name: string; }, b: { name: string; }) => a.name < b.name ? -1 : 1);
 
