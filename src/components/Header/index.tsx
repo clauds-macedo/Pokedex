@@ -1,8 +1,6 @@
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { MotiView } from 'moti';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { View, Text, TextInput } from "react-native";
+import { View, Text } from "react-native";
 import { styles } from "./styles";
 
 import Pokeball from "../../assets/Pokebola";
