@@ -21,7 +21,7 @@ import FAB from "../../components/FAB";
 
 export default function Home() {
   const [initialPokeData, setInitialPokeData] = useState([]);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  // const [isModalVisible, setIsModalVisible] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   
   const [search, setSearch] = useState<string>("");
@@ -55,9 +55,9 @@ export default function Home() {
     setIsLoaded(!isLoaded);
   }
 
-  const changeModalVisibility = () => {
-    setIsModalVisible(!isModalVisible);
-  };
+  // const changeModalVisibility = () => {
+  //   setIsModalVisible(!isModalVisible);
+  // };
 
   const splicePokemons = () => {
     setPokeData([]);
@@ -86,13 +86,13 @@ export default function Home() {
     }
   };
 
-  const handleChangeGen = () => {
-    splicePokemons();
-    setIsModalVisible(!isModalVisible);
-    setIsLoaded(false);
-    setStarterNum(generationIDS[gen - 1].start);
-    setEndNum(generationIDS[gen - 1].start + 20);
-  };
+  // const handleChangeGen = () => {
+  //   splicePokemons();
+  //   // setIsModalVisible(!isModalVisible);
+  //   setIsLoaded(false);
+  //   setStarterNum(generationIDS[gen - 1].start);
+  //   setEndNum(generationIDS[gen - 1].start + 20);
+  // };
 
   useEffect(() => {
     if (isLoaded === false) {
@@ -104,8 +104,7 @@ export default function Home() {
 
   const sortPokemons = () => {
     setInitialPokeData(pokeData);
-    let newData = [...initialPokeData];
-
+    let newData = [...pokeData];
     newData.sort((a: { name: string; }, b: { name: string; }) => a.name < b.name ? -1 : 1);
 
     return newData;
@@ -215,7 +214,7 @@ export default function Home() {
             </Modal> */}
           </ScrollView>
           <FAB 
-          style={{bottom: 15, right: 20}}
+          style={{bottom: 50, right: 30}} // valores que ficam legai no meu celular, default b: 15 r:20
           />
         </View>
       ) : !isLoaded ? (
