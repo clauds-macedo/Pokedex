@@ -35,13 +35,6 @@ export const styles = StyleSheet.create({
         paddingVertical: 4,
         fontFamily: theme.fonts.regular400,
     },
-    changePage: {
-        display: "flex",
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '90%',
-        flexDirection: 'row'
-    },
     pokemonContainer: {
         width: '100%',
         paddingTop: 8,
@@ -52,31 +45,17 @@ export const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'center',
     },
-    modalView: {
-        flex: 0.7, 
-        backgroundColor: '#fff', 
-        width: 300, 
-        borderRadius: 15,
-        padding: 12
-    },
-    modalText: {
-        fontSize: 24,
-        fontFamily: 'Poppins_400Regular',
-        marginBottom: 30
-    },
-    genChoose: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        flexDirection: 'row'
-    },
-    genButton: {
-        borderWidth: 0.3,
-        paddingHorizontal: 12,
-        borderRadius: 20
-    },
     searchBox: {
         display: 'flex',
         flexDirection: 'row'
     },
+    containerAnimation: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 170
+    },
+    animation: {
+        width: '60%'
+    }
 })
