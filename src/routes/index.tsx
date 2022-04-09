@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native'
 
-import splashScreen from  '../screens/Splash'
+import SplashScreen from  '../screens/Splash'
 import Home from "../screens/Home";
 
 const Stack = createStackNavigator();
@@ -18,7 +18,7 @@ export function Routes() {
             >
                 <Stack.Screen 
                     name="Splash"
-                    component={splashScreen}
+                    component={SplashScreen}
                 />
                 <Stack.Screen 
                     name="Home"

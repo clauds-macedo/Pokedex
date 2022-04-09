@@ -1,26 +1,25 @@
 import React from 'react';
-import { Poppins_400Regular, Poppins_700Bold } from '@expo-google-fonts/poppins'
+
+import { StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
 import { Routes } from './src/routes';
-import { StatusBar } from 'react-native';
+import SplashScreen from './src/screens/Splash';
 
 export default function App() {
-  
-  const[fontsLoaded] = useFonts({
-    Poppins_400Regular,
-    Poppins_700Bold
+
+  const [fontsLoaded] = useFonts({
+    'Poppins_400Regular': require('./src/assets/fonts/Poppins-Regular.ttf'),
+    'Poppins_700Bold': require('./src/assets/fonts/Poppins-Bold.ttf')
   });
-  
-  // segurar a splash screen
 
   return (
     <>
-      <StatusBar 
+      <StatusBar
         barStyle='light-content'
         backgroundColor='transparent'
         translucent
       />
-      <Routes />
+      {fontsLoaded ? <Routes /> : null}
     </>
   );
 }

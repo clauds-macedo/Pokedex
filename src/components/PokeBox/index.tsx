@@ -19,7 +19,7 @@ export default function PokeBox( { img, bgColor, name, id } : Props) {
                 <View style={[styles.card, {borderColor: bgColor}]}>
                     
                     <Text style={[styles.idText, {color: bgColor}]}>
-                        #{id}
+                        #{id < 10 ? '00' + id : id < 100 ? '0' + id : id}
                     </Text>
                     
                     <Image 

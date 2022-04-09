@@ -8,8 +8,15 @@ export const styles = StyleSheet.create({
         marginTop: 40
     },
     animation: {
-        width: "30%",
-        marginTop: 100
+        width: 100,
+        height: 100
+    },
+
+    animationContainer: {
+        flex: 1,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 
 
