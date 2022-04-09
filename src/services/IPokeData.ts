@@ -1,4 +1,4 @@
-export default interface IPokeData{
+export default interface IPokeData {
 
     abilities: [
         {
@@ -12,7 +12,7 @@ export default interface IPokeData{
     ],
 
     base_experience: number,
-    
+
     forms: [
         {
             name: string,
@@ -29,7 +29,7 @@ export default interface IPokeData{
             }
         }
     ],
-    
+
     height: number,
     held_items: [],
     id: number,
@@ -42,22 +42,22 @@ export default interface IPokeData{
                 name: string,
                 url: string
             },
-                version_group_details: [
-                    {
-                        level_learned_at: number,
-                        move_learn_method: {
-                            name: string,
-                            url: string
-                        },
-                        version_group: {
-                            name: string,
-                            url: string
-                        }
+            version_group_details: [
+                {
+                    level_learned_at: number,
+                    move_learn_method: {
+                        name: string,
+                        url: string
+                    },
+                    version_group: {
+                        name: string,
+                        url: string
                     }
-                ]
+                }
+            ]
         }
     ],
-    
+
     name: 'string',
     order: number,
     past_types: [],
@@ -67,9 +67,12 @@ export default interface IPokeData{
     }
 
     sprites: {
-        front_default: string,
-        front_shiny: string
-    },
+        other: {
+            official_artwork: {
+                front_default: string
+            }
+        }
+    }
 
     stats: [
         {
