@@ -53,9 +53,14 @@ export const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 170
+        marginTop: 150
     },
     animation: {
-        width: '60%'
+        width: '60%',
+        marginRight: 20
+    },
+    loadingText: {
+        fontFamily: theme.fonts.regular400,
+        fontSize: 20
     }
 })

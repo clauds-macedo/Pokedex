@@ -3,7 +3,6 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
 import { Routes } from './src/routes';
-import SplashScreen from './src/screens/Splash';
 
 export default function App() {
 

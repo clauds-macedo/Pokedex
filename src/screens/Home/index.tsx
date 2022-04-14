@@ -113,6 +113,7 @@ export default function Home() {
               autoPlay
               loop
             />
+            <Text style={styles.loadingText}>Carregando...</Text>
           </View>
         )}
       </View>
