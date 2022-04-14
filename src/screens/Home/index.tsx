@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigation } from '@react-navigation/native'
 import {
   View,
   Text,
@@ -6,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  StatusBar
 } from "react-native";
 import { styles } from "./styles";
 import { theme } from "../../global/theme";
@@ -17,14 +19,19 @@ import api from "../../services/api";
 
 import LottieView from 'lottie-react-native';
 import squirtle from '../../assets/lotties/splash-screen.json'
+import { context } from "../../context";
 
 const START = 1
-const END = 151
+const END = 20
 
 
 export default function Home() {
   const [initialPokeData, setInitialPokeData] = useState([]);
   const [pokeData, setPokeData] = useState([]);
+
+  const ctx = useContext(context)
+
+  const navigation = useNavigation()
 
   const [search, setSearch] = useState<string>("");
 
@@ -69,8 +76,17 @@ export default function Home() {
     }
   }
 
+  const handleChangeScreen = () => {
+    navigation.navigate('PokeInfo' as never)
+  }
+
   return (
     <>
+      {/* <StatusBar
+        barStyle='light-content'
+        backgroundColor='transparent' // pegar a cor do contexto
+        translucent
+      /> */}
       <View style={styles.container}>
         <Header
           function={() => { handleSortByNameButton() }}
@@ -98,6 +114,11 @@ export default function Home() {
                       bgColor={pokeColor}
                       name={poke.name}
                       id={poke.id}
+                      onPress={() => {
+                        handleChangeScreen()
+                        ctx.setPokeInfo(poke)
+                        ctx.setBgColor(pokeColor)
+                      }}
                     />
                   );
                 }
