@@ -3,7 +3,8 @@ export const theme: any = {
         background: "#F7F7F7",
         gray250: "#E0E0E0",
         gray500: "#666666",
-        darkGray: "#212121"
+        darkGray: "#212121",
+        Pokeball: "#ffffff1a"
     },
 
     types: {

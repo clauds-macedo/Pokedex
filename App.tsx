@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
 import { Routes } from './src/routes';
-import SplashScreen from './src/screens/Splash';
+
+import { ContextProvider } from './src/context';
+
 
 export default function App() {
 
@@ -13,14 +15,15 @@ export default function App() {
   });
 
   return (
-    <>
+    <ContextProvider>
       <StatusBar
         barStyle='light-content'
-        backgroundColor='transparent'
+        backgroundColor='transparent' // pegar a cor do contexto
         translucent
+        animated
       />
       {fontsLoaded ? <Routes /> : null}
-    </>
+    </ContextProvider>
   );
 }
 

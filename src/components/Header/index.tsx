@@ -5,6 +5,7 @@ import { View, Text } from "react-native";
 import { styles } from "./styles";
 
 import Pokeball from "../../assets/Pokebola";
+import { theme } from "../../global/theme";
 
 type Props = {
     function?: any;
@@ -16,7 +17,11 @@ export default function Header(props: Props) {
         <>
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Pokeball />
+                    <Pokeball
+                        width={32}
+                        height={32}
+                        fill={theme.colors.darkGray}
+                    />
                     <Text style={styles.textLogo}>Pokédex</Text>
                 </View>
 

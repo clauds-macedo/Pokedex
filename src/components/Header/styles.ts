@@ -30,6 +30,9 @@ export const styles = StyleSheet.create({
         paddingVertical: 4,
         fontFamily: theme.fonts.regular400,
     },
+    svg: {
+        marginBottom: 0
+    }
 
 
 })
