@@ -22,7 +22,7 @@ import squirtle from '../../assets/lotties/splash-screen.json'
 import { context } from "../../context";
 
 const START = 1
-const END = 20
+const END = 21
 
 
 export default function Home() {
@@ -81,63 +81,58 @@ export default function Home() {
   }
 
   return (
-    <>
-      {/* <StatusBar
-        barStyle='light-content'
-        backgroundColor='transparent' // pegar a cor do contexto
-        translucent
-      /> */}
-      <View style={styles.container}>
-        <Header
-          function={() => { handleSortByNameButton() }}
-          ordered={ordered}
+
+    <View style={styles.container}>
+      <Header
+        function={() => { handleSortByNameButton() }}
+        ordered={ordered}
+      />
+      <View style={styles.searchBox}>
+        <TextInput
+          style={styles.search}
+          placeholder="Procurar"
+          onChangeText={(textFromEvent) => setSearch(textFromEvent)}
         />
-        <View style={styles.searchBox}>
-          <TextInput
-            style={styles.search}
-            placeholder="Procurar"
-            onChangeText={(textFromEvent) => setSearch(textFromEvent)}
-          />
-        </View>
-        {isLoaded ? (
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.pokemonContainer}>
-              {pokeData.map((poke: IPokeData, key: number) => {
-                const pokeColor = theme.types[poke.types[0]["type"].name];
-                if (poke.name.toLowerCase().includes(search.toLowerCase())) {
-                  return (
-                    <PokeBox
-                      key={key}
-                      img={`https://cdn.traction.one/pokedex/pokemon/${poke.id}.png`}
-                      // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${poke.id}.png
-                      // https://cdn.traction.one/pokedex/pokemon/${poke.id}.png
-                      bgColor={pokeColor}
-                      name={poke.name}
-                      id={poke.id}
-                      onPress={() => {
-                        handleChangeScreen()
-                        ctx.setPokeInfo(poke)
-                        ctx.setBgColor(pokeColor)
-                      }}
-                    />
-                  );
-                }
-              })}
-            </View>
-          </ScrollView>
-        ) : (
-          // <Loading />
-          <View style={styles.containerAnimation}>
-            <LottieView
-              style={styles.animation}
-              source={squirtle}
-              autoPlay
-              loop
-            />
-            <Text style={styles.loadingText}>Carregando...</Text>
-          </View>
-        )}
       </View>
-    </>
+      {isLoaded ? (
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.pokemonContainer}>
+            {pokeData.map((poke: IPokeData, key: number) => {
+              const pokeColor = theme.types[poke.types[0]["type"].name];
+              if (poke.name.toLowerCase().includes(search.toLowerCase())) {
+                return (
+                  <PokeBox
+                    key={key}
+                    img={`https://cdn.traction.one/pokedex/pokemon/${poke.id}.png`}
+                    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${poke.id}.png
+                    // https://cdn.traction.one/pokedex/pokemon/${poke.id}.png
+                    bgColor={pokeColor}
+                    name={poke.name}
+                    id={poke.id}
+                    onPress={() => {
+                      handleChangeScreen()
+                      ctx.setPokeInfo(poke)
+                      ctx.setBgColor(pokeColor)
+                    }}
+                  />
+                );
+              }
+            })}
+          </View>
+        </ScrollView>
+      ) : (
+        // <Loading />
+        <View style={styles.containerAnimation}>
+          <LottieView
+            style={styles.animation}
+            source={squirtle}
+            autoPlay
+            loop
+          />
+          <Text style={styles.loadingText}>Carregando...</Text>
+        </View>
+      )}
+    </View>
+
   );
 }
