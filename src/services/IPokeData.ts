@@ -94,5 +94,6 @@ export default interface IPokeData {
             }
         }
     ]
+    weight: number
 
 }
