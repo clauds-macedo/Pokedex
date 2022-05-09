@@ -43,6 +43,8 @@ export const styles = StyleSheet.create({
   square: {
     width: '97%',
     height: '70%',
+    display: 'flex',
+    alignItems: 'center',
     backgroundColor: theme.colors.background,
     marginBottom: 8,
     borderRadius: 30
@@ -52,7 +54,18 @@ export const styles = StyleSheet.create({
     height: 200,
     position: 'absolute',
     top: 130,
-    left: 85,
+    left: 90,
     zIndex: 5
+  },
+  pokeTypeContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  title: {
+    fontFamily: theme.fonts.title700,
+    fontSize: 20,
+    marginTop: 16,
+    marginBottom: 16,
+
   }
 })

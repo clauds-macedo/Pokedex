@@ -7,11 +7,11 @@ import { theme } from "../../global/theme";
 
 import Pokebola from "../../assets/Pokebola";
 import { context } from "../../context";
+import IPokeData from "../../services/IPokeData";
+import PokeType from "../../components/PokeType";
 
 
 export default function PokeInfo() {
-
-  const [pokeData, setPokeData] = useState({})
 
   const ctx = useContext(context)
   const navigation = useNavigation()
@@ -21,6 +21,10 @@ export default function PokeInfo() {
 
   const BgColor = ctx.bgColor
 
+  // console.log('================================================')
+  // ctx.pokeInfo.stats.map((poke: IPokeData) => (
+  //   console.log('name: ', poke.stat.name, 'value: ', poke.base_stat)
+  // ))
 
 
   return (
@@ -57,9 +61,23 @@ export default function PokeInfo() {
         <View style={styles.squareContainer}>
           <View style={styles.square}>
 
+
+            <View style={styles.pokeTypeContainer}>
+              {ctx.pokeInfo.types.map((poke: IPokeData, key: number) =>
+                <PokeType
+                  key={key}
+                  type={poke.type.name}
+                />
+              )}
+            </View>
+
+            <Text style={[styles.title, { color: BgColor }]}>About</Text>
+
+
           </View>
         </View>
       </View>
+
     </>
   )
 }
