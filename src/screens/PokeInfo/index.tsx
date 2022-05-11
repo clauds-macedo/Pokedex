@@ -10,6 +10,7 @@ import { context } from "../../context";
 import IPokeData from "../../services/IPokeData";
 import PokeType from "../../components/PokeType";
 import About from "../../components/About";
+import BaseStats from "../../components/BaseStats";
 
 
 export default function PokeInfo() {
@@ -94,6 +95,16 @@ export default function PokeInfo() {
 
             <Text style={[styles.title, { color: BgColor }]}>Base Stats</Text>
 
+            <View style={styles.statsContainer}>
+              {pokeInfo.stats.map((poke: IPokeData, key: number) => (
+                <BaseStats
+                  name={poke.stat.name}
+                  value={poke.base_stat}
+                  color={BgColor}
+                  key={key}
+                />))
+              }
+            </View>
 
 
           </View>
