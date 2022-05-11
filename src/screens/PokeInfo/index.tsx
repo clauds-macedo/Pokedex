@@ -9,17 +9,30 @@ import Pokebola from "../../assets/Pokebola";
 import { context } from "../../context";
 import IPokeData from "../../services/IPokeData";
 import PokeType from "../../components/PokeType";
+import About from "../../components/About";
 
 
 export default function PokeInfo() {
 
-  const ctx = useContext(context)
   const navigation = useNavigation()
 
-  const id = ctx.pokeInfo.id
-  const name = ctx.pokeInfo.forms[0].name
+  const ctx = useContext(context)
+  const pokeInfo = ctx.pokeInfo
+  const id = pokeInfo.id
+  const name = pokeInfo.forms[0].name
 
   const BgColor = ctx.bgColor
+
+  let moves = new Array
+
+  const getAbilites = () => {
+    pokeInfo.abilities.map((item: string) => {
+      moves.push(item.ability.name)
+    })
+    return moves
+  }
+
+
 
   // console.log('================================================')
   // ctx.pokeInfo.stats.map((poke: IPokeData) => (
@@ -63,7 +76,7 @@ export default function PokeInfo() {
 
 
             <View style={styles.pokeTypeContainer}>
-              {ctx.pokeInfo.types.map((poke: IPokeData, key: number) =>
+              {pokeInfo.types.map((poke: IPokeData, key: number) =>
                 <PokeType
                   key={key}
                   type={poke.type.name}
@@ -72,6 +85,15 @@ export default function PokeInfo() {
             </View>
 
             <Text style={[styles.title, { color: BgColor }]}>About</Text>
+
+            <About
+              weight={pokeInfo.weight}
+              height={pokeInfo.height}
+              abilities={getAbilites()}
+            />
+
+            <Text style={[styles.title, { color: BgColor }]}>Base Stats</Text>
+
 
 
           </View>
