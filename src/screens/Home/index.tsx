@@ -4,10 +4,7 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableOpacity,
   TextInput,
-  Image,
-  StatusBar
 } from "react-native";
 import { styles } from "./styles";
 import { theme } from "../../global/theme";
@@ -22,21 +19,19 @@ import squirtle from '../../assets/lotties/splash-screen.json'
 import { context } from "../../context";
 
 const START = 1
-const END = 21
+const END = 54
 
 
 export default function Home() {
   const [initialPokeData, setInitialPokeData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [pokeData, setPokeData] = useState([]);
+  const [ordered, setOrdered] = useState(false)
+  const [search, setSearch] = useState<string>("");
 
   const ctx = useContext(context)
 
   const navigation = useNavigation()
-
-  const [search, setSearch] = useState<string>("");
-
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [ordered, setOrdered] = useState(false)
 
   async function getPokeData() {
     const data: any = new Array
@@ -70,10 +65,11 @@ export default function Home() {
     if (!ordered) {
       setPokeData(sortPokemons);
       setOrdered(true);
-    } else {
-      setPokeData(initialPokeData);
-      setOrdered(false);
-    }
+      return
+    } 
+    setPokeData(initialPokeData);
+    setOrdered(false);
+    
   }
 
   const handleChangeScreen = () => {
@@ -104,8 +100,6 @@ export default function Home() {
                   <PokeBox
                     key={key}
                     img={`https://cdn.traction.one/pokedex/pokemon/${poke.id}.png`}
-                    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${poke.id}.png
-                    // https://cdn.traction.one/pokedex/pokemon/${poke.id}.png
                     bgColor={pokeColor}
                     name={poke.name}
                     id={poke.id}
