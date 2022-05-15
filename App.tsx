@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
@@ -17,7 +17,7 @@ export default function App() {
   return (
     <ContextProvider>
       <StatusBar
-        barStyle='light-content'
+        barStyle='dark-content'
         backgroundColor='transparent' // pegar a cor do contexto
         translucent
         animated
