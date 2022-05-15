@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
     width: 200,
     height: 200,
     position: 'absolute',
-    top: 130,
+    top: '15%',
     left: 90,
     zIndex: 5
   },
