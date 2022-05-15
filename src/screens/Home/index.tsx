@@ -17,12 +17,15 @@ import api from "../../services/api";
 import LottieView from 'lottie-react-native';
 import squirtle from '../../assets/lotties/splash-screen.json'
 import { context } from "../../context";
+import Pagination from "../../components/Pagination";
 
 const START = 1
-const END = 54
+const END = 151
+const ITEMS_PER_PAGE = 21
 
 
 export default function Home() {
+  const [currentPokeData, setCurrentPokeData] = useState([]);
   const [initialPokeData, setInitialPokeData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [pokeData, setPokeData] = useState([]);
@@ -66,18 +69,22 @@ export default function Home() {
       setPokeData(sortPokemons);
       setOrdered(true);
       return
-    } 
+    }
     setPokeData(initialPokeData);
     setOrdered(false);
-    
+
   }
 
   const handleChangeScreen = () => {
     navigation.navigate('PokeInfo' as never)
   }
 
-  return (
+  const onPageChanged = ({ currentPage }) => {
+    const offset = (currentPage - 1) * ITEMS_PER_PAGE
+    setCurrentPokeData(pokeData.slice(offset, offset + ITEMS_PER_PAGE))
+  }
 
+  return (
     <View style={styles.container}>
       <Header
         function={() => { handleSortByNameButton() }}
@@ -91,31 +98,41 @@ export default function Home() {
         />
       </View>
       {isLoaded ? (
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.pokemonContainer}>
-            {pokeData.map((poke: IPokeData, key: number) => {
-              const pokeColor = theme.types[poke.types[0]["type"].name];
-              if (poke.name.toLowerCase().includes(search.toLowerCase())) {
-                return (
-                  <PokeBox
-                    key={key}
-                    img={`https://cdn.traction.one/pokedex/pokemon/${poke.id}.png`}
-                    bgColor={pokeColor}
-                    name={poke.name}
-                    id={poke.id}
-                    onPress={() => {
-                      handleChangeScreen()
-                      ctx.setPokeInfo(poke)
-                      ctx.setBgColor(pokeColor)
-                    }}
-                  />
-                );
-              }
-            })}
-          </View>
-        </ScrollView>
+        <>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.pokemonContainer}>
+              {currentPokeData.map((poke: IPokeData, key: number) => {
+                const pokeColor = theme.types[poke.types[0]["type"].name];
+                if (poke.name.toLowerCase().includes(search.toLowerCase())) {
+                  return (
+                    <PokeBox
+                      key={key}
+                      img={`https://cdn.traction.one/pokedex/pokemon/${poke.id}.png`}
+                      bgColor={pokeColor}
+                      name={poke.name}
+                      id={poke.id}
+                      onPress={() => {
+                        handleChangeScreen()
+                        ctx.setPokeInfo(poke)
+                        ctx.setBgColor(pokeColor)
+                      }}
+                    />
+                  );
+                }
+              })}
+            </View>
+          </ScrollView>
+
+          <Pagination
+            limit={ITEMS_PER_PAGE}
+            total={END}
+            onPageChanged={onPageChanged}
+          />
+        </>
+
+
       ) : (
-        // <Loading />
+
         <View style={styles.containerAnimation}>
           <LottieView
             style={styles.animation}
@@ -125,6 +142,7 @@ export default function Home() {
           />
           <Text style={styles.loadingText}>Carregando...</Text>
         </View>
+
       )}
     </View>
 
