@@ -18,5 +18,9 @@ export const styles = StyleSheet.create({
   },
   text: {
     fontFamily: theme.fonts.regular400
+  },
+  current: {
+    backgroundColor: theme.types.water,
+    borderColor: theme.types.water
   }
 })

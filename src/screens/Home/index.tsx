@@ -21,7 +21,7 @@ import Pagination from "../../components/Pagination";
 
 const START = 1
 const END = 151
-const ITEMS_PER_PAGE = 21
+const ITEMS_PER_PAGE = 30
 
 
 export default function Home() {
@@ -98,38 +98,36 @@ export default function Home() {
         />
       </View>
       {isLoaded ? (
-        <>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.pokemonContainer}>
-              {currentPokeData.map((poke: IPokeData, key: number) => {
-                const pokeColor = theme.types[poke.types[0]["type"].name];
-                if (poke.name.toLowerCase().includes(search.toLowerCase())) {
-                  return (
-                    <PokeBox
-                      key={key}
-                      img={`https://cdn.traction.one/pokedex/pokemon/${poke.id}.png`}
-                      bgColor={pokeColor}
-                      name={poke.name}
-                      id={poke.id}
-                      onPress={() => {
-                        handleChangeScreen()
-                        ctx.setPokeInfo(poke)
-                        ctx.setBgColor(pokeColor)
-                      }}
-                    />
-                  );
-                }
-              })}
-            </View>
-          </ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.pokemonContainer}>
+            {currentPokeData.map((poke: IPokeData, key: number) => {
+              const pokeColor = theme.types[poke.types[0]["type"].name];
+              if (poke.name.toLowerCase().includes(search.toLowerCase())) {
+                return (
+                  <PokeBox
+                    key={key}
+                    img={`https://cdn.traction.one/pokedex/pokemon/${poke.id}.png`}
+                    bgColor={pokeColor}
+                    name={poke.name}
+                    id={poke.id}
+                    onPress={() => {
+                      handleChangeScreen()
+                      ctx.setPokeInfo(poke)
+                      ctx.setBgColor(pokeColor)
+                    }}
+                  />
+                );
+              }
+            })}
+          </View>
 
           <Pagination
             limit={ITEMS_PER_PAGE}
             total={END}
             onPageChanged={onPageChanged}
           />
-        </>
 
+        </ScrollView>
 
       ) : (
 
@@ -144,7 +142,7 @@ export default function Home() {
         </View>
 
       )}
-    </View>
 
+    </View>
   );
 }

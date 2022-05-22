@@ -8,5 +8,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 10,
 
+  },
+  current: {
+
   }
 })

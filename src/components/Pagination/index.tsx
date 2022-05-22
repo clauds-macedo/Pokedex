@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { View } from "react-native";
 import PagButton from "../PagButton";
 import { styles } from "./styles"
 
@@ -90,8 +89,6 @@ export default function Pagination({ total, limit, onPageChanged }: Props) {
     onPageChanged(paginationData)
   }
 
-  console.log(currentPage)
-
   const handlePress = page => {
     goToPage(page)
   }
@@ -108,6 +105,7 @@ export default function Pagination({ total, limit, onPageChanged }: Props) {
             onPress={() => handlePress(page)}
             page={page}
             key={key}
+            current={currentPage}
           />
         )
       })}
