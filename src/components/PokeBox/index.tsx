@@ -2,21 +2,24 @@ import React, { useContext } from "react";
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import { context } from "../../context";
 import { styles } from "./styles";
+import IPokeData from "../../services/IPokeData";
+import { theme } from "../../global/theme";
 
-
-type Props = {
-    img: string;
-    bgColor: string;
-    name: string;
-    id: number;
-    onPress: any
+interface PokeBoxProps extends IPokeData {
+    onPress?: () => void
+    theme?: ThemeType
 }
 
+interface ThemeType {
+    types: Record<string, string>
+}
 
+export default function PokeBox({ sprites, name, id, types, onPress, theme }: PokeBoxProps) {
 
-export default function PokeBox({ img, bgColor, name, id, onPress }: Props) {
+    const bgColor = theme.types[types[0].type.name]
+    
+    const {front_default} = sprites.other["official-artwork"]
 
-    const ctx = useContext(context)
     return (
         <View style={styles.container}>
             <TouchableOpacity
@@ -30,7 +33,7 @@ export default function PokeBox({ img, bgColor, name, id, onPress }: Props) {
                     </Text>
 
                     <Image
-                        source={{ uri: img }}
+                        source={{uri: front_default}}
                         style={styles.img}
                     />
                     <View style={[styles.rectangle, { backgroundColor: bgColor }]}>
