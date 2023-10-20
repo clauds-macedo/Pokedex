@@ -5,33 +5,31 @@ export const styles = StyleSheet.create({
     container: {
         height: 112,
         width: 104,
-        marginTop: 8,
-        marginRight: 12,
-        marginBottom: 12
+        margin: 10
     },
     card: {
         width: 104,
         height: 112,
         borderRadius: 8,
         borderWidth: 0.8,
-        paddingLeft: 8,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: "relative"
     },
     rectangle: {
         opacity: 0.9,
         position: "absolute",
         width: 104,
         height: 24,
-        bottom: 0,
+        bottom: -1,
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
     },
     img: {
-        width: 85,
-        height: 85
+        width: 95,
+        height: 95
     },
     text: {
         textTransform: "capitalize",
