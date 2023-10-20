@@ -4,37 +4,33 @@ import { theme } from "../../global/theme";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
+        width: '100%',
         marginTop: 40,
         alignItems: 'center',
+    },
+    listContainer: {
+        gap: 12
     },
     search: {
         width: '90%',
         borderWidth: 0.4,
         borderRadius: 8,
         marginVertical: 16,
-        paddingHorizontal: 8,
+        paddingHorizontal: 32,
         paddingVertical: 4,
         fontFamily: theme.fonts.regular400,
-    },
-    pokemonContainer: {
-        width: '100%',
-        paddingTop: 8,
-        paddingLeft: 8,
-        display: 'flex',
-        flexDirection: 'row',
-        overflow: 'hidden',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
+        position: "relative"
     },
     searchBox: {
-        display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        
     },
     containerAnimation: {
-        display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 150
+        marginBottom: 50,
+        flex: 1,
+        alignSelf: "center"
     },
     animation: {
         width: '60%',
@@ -43,5 +39,10 @@ export const styles = StyleSheet.create({
     loadingText: {
         fontFamily: theme.fonts.regular400,
         fontSize: 20
+    },
+    magnify: {
+        position: "absolute",
+        bottom: 23,
+        left: 6
     }
 })
