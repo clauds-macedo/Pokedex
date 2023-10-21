@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     container: {
         height: 112,
         width: 104,
-        margin: 10
+        margin: 8
     },
     card: {
         width: 104,
