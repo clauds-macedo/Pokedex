@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { FlashList } from "@shopify/flash-list";
 import { View } from "react-native";
@@ -10,6 +10,8 @@ import PokeBox from "../../components/PokeBox";
 import Header from "./components/Header";
 import Error from "./components/Error";
 
+// import { context } from "../../context";
+import { usePokeInfoStore } from "../../hooks/useStore";
 import IPokeData from "../../services/IPokeData";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
@@ -27,6 +29,12 @@ export default function Home() {
 
   // const ctx = useContext(context);
   const navigation = useNavigation();
+  const setPokeInfo = usePokeInfoStore((state) => state.setPokeInfo);
+
+  const handleChangeScreen = (item: IPokeData) => {
+    setPokeInfo(item);
+    navigation.navigate("PokeInfo" as never);
+  };
 
   /* 
 
@@ -34,14 +42,14 @@ export default function Home() {
     que o limite de pokemons, então a funcão calcula a diferença até o limite e retorna esse valor.
     Caso contrário, retorna o número de requsições padrão.
   
-    */
+  */
 
   function verifyIfCanDoMoreRequests() {
     let numberOfRequests = 30;
     if (pokeId + numberOfRequests < LIMIT_POKEMON_ID) {
       return numberOfRequests;
     }
-    setHasMoreData(false)
+    setHasMoreData(false);
     return (numberOfRequests = LIMIT_POKEMON_ID - pokeId);
   }
 
@@ -57,10 +65,12 @@ export default function Home() {
   }
 
   async function getPokeData() {
-    if(!hasMoreData) return
+    if (!hasMoreData) return;
 
     let apiResponse;
-    const promisesArray = await createPromisesArray(verifyIfCanDoMoreRequests());
+    const promisesArray = await createPromisesArray(
+      verifyIfCanDoMoreRequests()
+    );
 
     try {
       apiResponse = await Promise.all(promisesArray);
@@ -79,10 +89,6 @@ export default function Home() {
     getPokeData();
   }, []);
 
-  const handleChangeScreen = () => {
-    navigation.navigate("PokeInfo" as never);
-  };
-
   if (error) {
     return <Error />;
   }
@@ -98,16 +104,18 @@ export default function Home() {
           <View style={styles.pokemonsContainer}>
             <FlashList
               onEndReached={getPokeData}
-              ListFooterComponent={
-                hasMoreData ? <ListLoading /> : null
-              }
+              ListFooterComponent={hasMoreData ? <ListLoading /> : null}
               onEndReachedThreshold={0.2}
               estimatedItemSize={132}
               numColumns={3}
               data={pokeData}
               keyExtractor={(item) => item.name}
               renderItem={({ item }) => (
-                <PokeBox {...item} theme={theme} onPress={handleChangeScreen} />
+                <PokeBox
+                  {...item}
+                  theme={theme}
+                  onPress={() => handleChangeScreen(item)}
+                />
               )}
             />
           </View>
