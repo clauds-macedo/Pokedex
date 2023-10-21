@@ -4,9 +4,6 @@ import { StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
 import { Routes } from './src/routes';
 
-import { ContextProvider } from './src/context';
-
-
 export default function App() {
 
   const [fontsLoaded] = useFonts({
@@ -15,7 +12,7 @@ export default function App() {
   });
 
   return (
-    <ContextProvider>
+    <>
       <StatusBar
         barStyle='dark-content'
         backgroundColor='transparent' // pegar a cor do contexto
@@ -23,7 +20,7 @@ export default function App() {
         animated
       />
       {fontsLoaded ? <Routes /> : null}
-    </ContextProvider>
+    </>
   );
 }
 
