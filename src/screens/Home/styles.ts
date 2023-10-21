@@ -8,8 +8,9 @@ export const styles = StyleSheet.create({
         marginTop: 40,
         alignItems: 'center',
     },
-    listContainer: {
-        gap: 12
+    pokemonsContainer: {
+        flex: 1,
+        width: "95%",
     },
     search: {
         width: '90%',
@@ -33,8 +34,8 @@ export const styles = StyleSheet.create({
         alignSelf: "center"
     },
     animation: {
-        width: '60%',
-        marginRight: 20
+        width: '40%',
+        // marginRight: 20
     },
     loadingText: {
         fontFamily: theme.fonts.regular400,
@@ -44,5 +45,13 @@ export const styles = StyleSheet.create({
         position: "absolute",
         bottom: 23,
         left: 6
+    },
+    listLoadingAnimation: {
+        width: "40%"
+    },
+    listLoadingAnimationContainer: {
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
     }
 })
