@@ -65,7 +65,7 @@ export default function Home() {
   }
 
   async function getPokeData() {
-    if (!hasMoreData) return;
+    if (!hasMoreData || search.length > 0) return;
 
     let apiResponse;
     const promisesArray = await createPromisesArray(
@@ -108,7 +108,7 @@ export default function Home() {
           <View style={styles.pokemonsContainer}>
             <FlashList
               onEndReached={getPokeData}
-              ListFooterComponent={hasMoreData ? <ListLoading /> : null}
+              ListFooterComponent={hasMoreData && !search.length ? <ListLoading /> : null}
               onEndReachedThreshold={0.2}
               estimatedItemSize={132}
               numColumns={3}
