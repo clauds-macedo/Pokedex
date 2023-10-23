@@ -18,11 +18,12 @@ $ expo start
 - [ ] TypeScript
 - [ ] Expo
 - [ ] React Navigation Stack
-- [ ] React Native Gesture Handler
+- [ ] Gerenciamento de estados com Zustand
+- [ ] FlashList                                                                     
 - [ ] Lottie
 - [ ] Axios
 
-## 🖼️ Screenshots
+## 🖼️ Demonstração
   <img src="https://github.com/withoutspaces/Pokedex/blob/pagination-component/src/demo/screens.png?raw=true" width=700 />
   
   
