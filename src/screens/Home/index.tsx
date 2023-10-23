@@ -25,7 +25,7 @@ export default function Home() {
   const [pokeData, setPokeData] = useState<IPokeData[]>([]);
   const [search, setSearch] = useState("");
 
-  const LIMIT_POKEMON_ID = 100;
+  const LIMIT_POKEMON_ID = 201;
 
   // const ctx = useContext(context);
   const navigation = useNavigation();
@@ -85,6 +85,10 @@ export default function Home() {
     setIsLoaded(true);
   }
 
+  const filteredPokemons = search.length > 0 
+    ? pokeData.filter(poke => poke.name.includes(search))
+    : []
+
   useEffect(() => {
     getPokeData();
   }, []);
@@ -108,7 +112,7 @@ export default function Home() {
               onEndReachedThreshold={0.2}
               estimatedItemSize={132}
               numColumns={3}
-              data={pokeData}
+              data={search.length > 0 ? filteredPokemons : pokeData}
               keyExtractor={(item) => item.name}
               renderItem={({ item }) => (
                 <PokeBox
