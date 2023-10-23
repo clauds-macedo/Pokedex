@@ -1,30 +1,44 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { theme } from "../../global/theme";
+
+console.log(StatusBar.currentHeight);
+
+const statusBarHeight = () => {
+  const averageHeight = 28
+  if(StatusBar.currentHeight) {
+    return StatusBar.currentHeight
+  }
+  return averageHeight
+}
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 33,
-    backgroundColor: theme.types.grass,
+  },
+  headerContainer: {
+    marginTop: statusBarHeight() + 8 
   },
   header: {
-    display: 'flex',
+    width: "100%",
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 24,
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
     position: 'relative',
     zIndex: 3
+  },
+  headerTitleContainer: {
+    alignItems: "center",
+    flexDirection: "row",
+    gap: 12
   },
   headerTitle: {
     fontFamily: theme.fonts.title700,
     fontSize: 24,
-    marginLeft: 20,
     color: theme.colors.background,
     textTransform: "capitalize",
   },
   headerId: {
-    position: "absolute",
-    right: 24,
     fontFamily: theme.fonts.title700,
     fontSize: 12,
     color: theme.colors.background
@@ -36,29 +50,29 @@ export const styles = StyleSheet.create({
   },
   squareContainer: {
     flex: 1,
-    display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end'
   },
   square: {
     width: '97%',
-    height: '70%',
-    display: 'flex',
+    height: '63%',
     alignItems: 'center',
+    alignSelf: "center",
+    position: "absolute",
+    bottom: 0,
     backgroundColor: theme.colors.background,
     marginBottom: 8,
     borderRadius: 30
   },
   pokeImage: {
-    width: 200,
-    height: 200,
+    width: 220,
+    height: 220,
     position: 'absolute',
-    top: '15%',
-    left: 90,
+    top: "14%",
+    alignSelf: "center",
     zIndex: 5
   },
   pokeTypeContainer: {
-    display: 'flex',
     flexDirection: 'row',
   },
   title: {
@@ -66,6 +80,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 16,
     marginBottom: 16,
+    textAlign: "center"
 
   }
 })
