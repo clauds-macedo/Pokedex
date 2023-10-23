@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
     borderRightColor: theme.colors.gray250
   },
   value: {
+    fontFamily: theme.fonts.regular400,
     paddingHorizontal: 12,
     fontSize: 16,
 
