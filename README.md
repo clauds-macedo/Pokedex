@@ -24,6 +24,6 @@ $ expo start
 - [ ] Axios
 
 ## 🖼️ Demonstração
-  <img src="https://github.com/withoutspaces/Pokedex/blob/main/src/demo/gifteste.gif" width=300 />
+  <img src="https://github.com/withoutspaces/Pokedex/blob/main/src/demo/gifteste.gif" width="300" />
   
   
