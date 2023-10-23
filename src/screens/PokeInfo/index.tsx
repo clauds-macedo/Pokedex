@@ -1,116 +1,56 @@
-import React, { useContext, useState } from "react";
-import { useNavigation } from '@react-navigation/native'
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, Image, StatusBar } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import { styles } from "./styles";
 import { theme } from "../../global/theme";
 
-import Pokebola from "../../assets/Pokebola";
-import { context } from "../../context";
+import { usePokeInfoStore } from "../../hooks/useStore";
 import IPokeData from "../../services/IPokeData";
-import PokeType from "../../components/PokeType";
+import BaseStats from "./Components/BaseStats";
 import About from "../../components/About";
-import BaseStats from "../../components/BaseStats";
-
+import Header from "./Components/Header";
+import Types from "./Components/Types";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function PokeInfo() {
+  const navigation = useNavigation();
 
-  const navigation = useNavigation()
-
-  const ctx = useContext(context)
-  const pokeInfo = ctx.pokeInfo
-  const id = pokeInfo.id
-  const name = pokeInfo.forms[0].name
-
-  const BgColor = ctx.bgColor
-
-  let moves = new Array
+  const pokeInfo: IPokeData = usePokeInfoStore((state) => state.pokeInfo);
+  const { id, name, types, abilities, sprites, stats } = pokeInfo;
+  const bgColor = (theme.types as Record<string, string>)[types[0].type.name];
+  const pokeImage = sprites.other["official-artwork"].front_default;
 
   const getAbilites = () => {
-    pokeInfo.abilities.map((item: string) => {
-      moves.push(item.ability.name)
-    })
-    return moves
-  }
-
-
-
-  // console.log('================================================')
-  // ctx.pokeInfo.stats.map((poke: IPokeData) => (
-  //   console.log('name: ', poke.stat.name, 'value: ', poke.base_stat)
-  // ))
-
+    let moves: string[] = [];
+    abilities.map((item) => {
+      moves.push(item.ability.name);
+    });
+    return moves;
+  };
 
   return (
     <>
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor={BgColor} // pegar a cor do contexto
-        animated
-      />
-      <View style={{ flex: 1, marginTop: 33, backgroundColor: BgColor }}>
-        <View style={styles.header}>
-          <MaterialCommunityIcons
-            name="arrow-left"
-            color={theme.colors.background}
-            size={32}
-            onPress={() => navigation.goBack() as never}
-          />
-          <Text style={styles.headerTitle}>{name}</Text>
-          <Text style={styles.headerId}>#{id < 10 ? '00' + id : id < 100 ? '0' + id : id}</Text>
-        </View>
+      <StatusBar barStyle="light-content" />
+      <View style={[styles.container, { backgroundColor: bgColor }]}>
+        <Header id={id} name={name} onPress={() => navigation.goBack()} />
 
-        <Pokebola
-          width={250}
-          height={250}
-          fill={theme.colors.Pokeball}
-          styles={styles.pokeball}
-        />
+        <Image source={{ uri: pokeImage }} style={styles.pokeImage} />
 
-        <Image
-          source={{ uri: `https://cdn.traction.one/pokedex/pokemon/${id}.png` }}
-          style={styles.pokeImage}
-        />
-
-        <View style={styles.squareContainer}>
-          <View style={styles.square}>
-
-
-            <View style={styles.pokeTypeContainer}>
-              {pokeInfo.types.map((poke: IPokeData, key: number) =>
-                <PokeType
-                  key={key}
-                  type={poke.type.name}
-                />
-              )}
-            </View>
-
-            <Text style={[styles.title, { color: BgColor }]}>About</Text>
+        <View style={styles.square}>
+          <Types types={types} />
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Text style={[styles.title, { color: bgColor }]}>About</Text>
 
             <About
               weight={pokeInfo.weight}
               height={pokeInfo.height}
               abilities={getAbilites()}
             />
-
-            <Text style={[styles.title, { color: BgColor }]}>Base Stats</Text>
-
-            <View style={styles.statsContainer}>
-              {pokeInfo.stats.map((poke: IPokeData, key: number) => (
-                <BaseStats
-                  name={poke.stat.name}
-                  value={poke.base_stat}
-                  color={BgColor}
-                  key={key}
-                />))
-              }
-            </View>
-
-
-          </View>
+            <BaseStats bgColor={bgColor} stats={stats} />
+          </ScrollView>
         </View>
       </View>
-
     </>
-  )
+  );
 }
